@@ -1,0 +1,33 @@
+/* For information on how to create your own theme, please see:
+http://ionicframework.com/docs/theming/ */
+
+:root {
+    --ion-color-primary: #dc4c54;
+    --ion-color-primary-rgb: 0, 84, 233;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255, 255, 255;
+    --ion-color-primary-shade: #004acd;
+    --ion-color-primary-tint: #1a65eb;
+}
+ion-app {
+    position: relative;
+}
+ion-footer {
+    background-color: #d9cbcb;
+    color: #771414;
+    font-size: smaller;
+    position: fixed;
+    bottom: 0;
+}
+
+#profile-pic {
+    display: block;
+    max-height: 20em;
+    max-width: 20em;
+    margin: 0 auto;
+  }
+
+
+#employee-pic {
+    width: 20rem;
+}

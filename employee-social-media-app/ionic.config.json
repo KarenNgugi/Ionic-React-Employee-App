@@ -1,0 +1,7 @@
+{
+  "name": "employee-social-media-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
