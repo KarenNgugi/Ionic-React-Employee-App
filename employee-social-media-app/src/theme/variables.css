@@ -34,3 +34,7 @@ ion-footer {
     object-fit: cover;
     border-radius: 2px;
 }
+
+ion-popover {
+    --offset-y: -25%;
+}
