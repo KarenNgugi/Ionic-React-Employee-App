@@ -29,5 +29,8 @@ ion-footer {
 
 
 #employee-pic {
-    width: 20rem;
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 2px;
 }
