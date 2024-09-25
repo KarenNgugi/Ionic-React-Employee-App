@@ -67,7 +67,7 @@ const People: React.FC = () => {
               <IonCol sizeLg="3" sizeMd="6" sizeSm="12" key={employee.id}>
                 <IonCard button onClick={() => handleCardClick(employee)}>
                   <img
-                    src={`http://localhost:8000${employee.photo}`}
+                    src={`${employee.photo}`}
                     alt="Employee photo"
                     id="employee-pic"
                   />
@@ -92,7 +92,7 @@ const People: React.FC = () => {
           {selectedEmployee && (
             <IonCard>
               <img
-                src={`http://localhost:8000${selectedEmployee.photo}`}
+                src={`${selectedEmployee.photo}`}
                 alt="Employee profile picture"
               />
               <IonCardHeader>
