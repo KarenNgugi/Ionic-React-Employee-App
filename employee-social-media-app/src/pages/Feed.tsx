@@ -5,14 +5,10 @@ import {
   IonTitle,
   IonFooter,
   IonContent,
-  IonInput,
   IonButton,
-  IonList,
-  IonItem,
   IonCard,
   IonTextarea,
   IonImg,
-  IonCardHeader,
   IonGrid,
   IonRow,
   IonCol,
@@ -20,6 +16,7 @@ import {
   IonIcon,
   IonCardTitle,
   IonCardSubtitle,
+  IonInput,
 } from "@ionic/react";
 import React, { useState } from "react";
 import {
@@ -31,7 +28,9 @@ import {
 
 const Feed: React.FC = () => {
   const [postContent, setPostContent] = useState("");
-  const [uploadedImage, setUploadedImage] = useState(false);
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [isPostButtonEnabled, setIsPostButtonEnabled] = useState(false);
+//   const [uploadedImage, setUploadedImage] = useState(false);
 
   const [posts, setPosts] = useState([
     {
@@ -52,21 +51,46 @@ const Feed: React.FC = () => {
 
   // handler for typing in the text area
   const handleTextChange = (e: any) => {
-    setPostContent(e.target.value);
+    const text = e.target.value;
+    setPostContent(text);
+    checkPostButtonEnabled(text, uploadedImage);
   };
 
   // handler for uploading images
   const handleUploadImage = (event: any) => {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const imageSrc = e.target?.result as string;
+            setUploadedImage(imageSrc);
+            checkPostButtonEnabled(postContent, imageSrc);
+        };
+        reader.readAsDataURL(file);
+    }
     // add logic for uploading images
-    setUploadedImage(true);
+    // setUploadedImage(true);
   };
 
+// check whether post button should be enabled
+  const checkPostButtonEnabled = (text: string, image: string | null) => {
+    setIsPostButtonEnabled(text.trim() !== "" || image !== null);
+  };
+
+//   handle post submission
+  const handlePostSubmit = () => {
+    console.log("Post submitted with text:", postContent, "and image:", uploadedImage);
+    handleCancelPost();
+  };
+
+//   clear text and image 
   const handleCancelPost = () => {
     setPostContent("");
-    setUploadedImage(false);
+    setUploadedImage(null);
+    setIsPostButtonEnabled(false);
   };
 
-  const isPostButtonEnabled = postContent.trim() !== "" || uploadedImage;
+//   const isPostButtonEnabled = postContent.trim() !== "" || uploadedImage;
 
   return (
     <IonApp>
@@ -103,7 +127,17 @@ const Feed: React.FC = () => {
                   />
                 </IonCol>
               </IonRow>
+
+              {/* display uploaded image preview */}
+              {uploadedImage && (
+                <IonRow>
+                    <IonCol>
+                        <IonImg src={uploadedImage} alt="uploaded image preview" style={{ width: "100%", marginTop: "1rem" }}/>
+                    </IonCol>
+                </IonRow>
+              )}
             </IonGrid>
+
             <IonGrid>
               <IonRow>
                 <IonCol size="auto">
@@ -115,13 +149,15 @@ const Feed: React.FC = () => {
                 </IonCol>
                 <IonCol></IonCol>
                 <IonCol size="auto">
+                    {/* image upload button */}
                   <IonButton fill="clear" onClick={handleUploadImage}>
                     <IonIcon icon={imageOutline} />
+                    <input type="file" accept="image/*" onChange={handleUploadImage} style={{ position: "absolute", opacity: 0, width: "100pc", height: "100pc"}}/>
                   </IonButton>
                   <IonButton
                     disabled={!isPostButtonEnabled}
                     color="primary"
-                    onClick={() => console.log("Post submitted!")}
+                    onClick={handlePostSubmit}
                   >
                     POST
                   </IonButton>
@@ -132,41 +168,6 @@ const Feed: React.FC = () => {
         </IonCard>
 
         {/* dynamic feed section */}
-        {/* <IonList>
-            {posts.map((post) => (
-                <IonItem key={post.id}>
-                    <IonCard>
-                        <IonCardContent>
-                            <IonGrid>
-                                <IonRow>
-                                    <IonCol size="auto">
-                                        <IonImg src={post.profile_picture}
-                                        alt="Poster profile picture" style={{ width: "5rem", borderRadius: "50%",
-                                        }}/>
-                                    </IonCol>
-                                    <IonCol>
-                                        <IonCardTitle>{post.name}</IonCardTitle>
-                                        <IonCardSubtitle>{post.timestamp}</IonCardSubtitle>
-                                    </IonCol>
-                                </IonRow>
-                            </IonGrid>
-                            </IonCardContent>
-                        <IonCardContent>{post.content}</IonCardContent>
-                        <IonCardContent>
-                            <IonButton fill="clear">
-                                <IonIcon icon={heartOutline} slot="start" />React
-                            </IonButton>
-                            <IonButton fill="clear">
-                                <IonIcon icon={chatbubbleOutline} slot="start" />Comment
-                            </IonButton>
-                            <IonButton fill="clear">
-                                <IonIcon icon={shareSocialOutline} slot="start" />Share
-                            </IonButton>
-                        </IonCardContent>
-                    </IonCard>
-                </IonItem>
-            ))}
-        </IonList> */}
         <IonGrid>
           {posts.map((post) => (
             <IonRow key={post.id}>
