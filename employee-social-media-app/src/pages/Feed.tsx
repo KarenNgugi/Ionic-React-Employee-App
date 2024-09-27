@@ -120,7 +120,8 @@ const Feed: React.FC = () => {
                   <IonTextarea
                     placeholder="Say something..."
                     value={postContent}
-                    onIonChange={handleTextChange}
+                    onIonInput={handleTextChange}
+                    // onIonChange={handleTextChange}
                     rows={3}
                     autoGrow={true}
                     fill="outline"
@@ -152,7 +153,7 @@ const Feed: React.FC = () => {
                     {/* image upload button */}
                   <IonButton fill="clear" onClick={handleUploadImage}>
                     <IonIcon icon={imageOutline} />
-                    <input type="file" accept="image/*" onChange={handleUploadImage} style={{ position: "absolute", opacity: 0, width: "100pc", height: "100pc"}}/>
+                    <input type="file" accept="image/*" onChange={handleUploadImage} style={{ position: "absolute", opacity: 0, width: "100%", height: "100%"}}/>
                   </IonButton>
                   <IonButton
                     disabled={!isPostButtonEnabled}
