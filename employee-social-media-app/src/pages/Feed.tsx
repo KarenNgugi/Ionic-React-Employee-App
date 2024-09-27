@@ -16,7 +16,12 @@ import {
   IonIcon,
   IonCardTitle,
   IonCardSubtitle,
-  IonInput,
+  IonMenu,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonButtons,
+  IonMenuButton,
 } from "@ionic/react";
 import React, { useState } from "react";
 import {
@@ -24,13 +29,16 @@ import {
   heartOutline,
   shareSocialOutline,
   imageOutline,
+  personOutline,
+  peopleOutline,
+  logOutOutline,
+  menuOutline,
 } from "ionicons/icons";
 
 const Feed: React.FC = () => {
   const [postContent, setPostContent] = useState("");
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [isPostButtonEnabled, setIsPostButtonEnabled] = useState(false);
-//   const [uploadedImage, setUploadedImage] = useState(false);
 
   const [posts, setPosts] = useState([
     {
@@ -68,8 +76,6 @@ const Feed: React.FC = () => {
         };
         reader.readAsDataURL(file);
     }
-    // add logic for uploading images
-    // setUploadedImage(true);
   };
 
 // check whether post button should be enabled
@@ -90,13 +96,50 @@ const Feed: React.FC = () => {
     setIsPostButtonEnabled(false);
   };
 
-//   const isPostButtonEnabled = postContent.trim() !== "" || uploadedImage;
-
   return (
     <IonApp>
+        {/* mobile menu */}
+        <IonMenu contentId="main-content" side="end">
+            <IonContent>
+                <IonList>
+                    <IonItem routerLink="/profile">
+                    <IonIcon icon={personOutline} slot="start" />
+                    <IonLabel>Profile</IonLabel>
+                    </IonItem>
+                    <IonItem routerLink="/people">
+                    <IonIcon icon={peopleOutline} slot="start" />
+                    <IonLabel>People</IonLabel>
+                    </IonItem>
+                    <IonItem routerLink="/login">
+                    <IonIcon icon={logOutOutline} slot="start" />
+                    <IonLabel>Logout</IonLabel>
+                    </IonItem>
+                </IonList>
+            </IonContent>
+        </IonMenu>
+
       <IonHeader>
         <IonToolbar color="primary">
           <IonTitle>Feed</IonTitle>
+          {/* desktop icons */}
+          <IonButtons slot="end" className="ion-hide-sm-down">
+            <IonButton routerLink="/profile">
+            <IonIcon icon={personOutline} />
+            </IonButton>
+            <IonButton routerLink="/people">
+            <IonIcon icon={peopleOutline} />
+            </IonButton>
+            <IonButton routerLink="/login">
+            <IonIcon icon={logOutOutline} />
+            </IonButton>
+          </IonButtons>
+
+          {/* mobile menu button */}
+          <IonButtons slot="end" className="ion-hide-lg-up">
+            <IonMenuButton autoHide={false}>
+                <IonIcon icon={menuOutline} />
+            </IonMenuButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">

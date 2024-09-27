@@ -12,7 +12,14 @@ import {
   IonRow,
   IonCol,
   IonItem,
+  IonIcon,
+  IonButtons,
+  IonMenuButton,
+  IonMenu,
+  IonList,
+  IonLabel,
 } from "@ionic/react";
+import { logOutOutline, menuOutline, peopleOutline, homeOutline } from "ionicons/icons";
 import { useState } from "react";
 
 const Profile: React.FC = () => {
@@ -33,9 +40,48 @@ const Profile: React.FC = () => {
 
   return (
     <IonApp>
+      {/* mobile menu */}
+      <IonMenu contentId="main-content" side="end">
+            <IonContent>
+                <IonList>
+                    <IonItem routerLink="/feed">
+                    <IonIcon icon={homeOutline} slot="start" />
+                    <IonLabel>Feed</IonLabel>
+                    </IonItem>
+                    <IonItem routerLink="/people">
+                    <IonIcon icon={peopleOutline} slot="start" />
+                    <IonLabel>People</IonLabel>
+                    </IonItem>
+                    <IonItem routerLink="/login">
+                    <IonIcon icon={logOutOutline} slot="start" />
+                    <IonLabel>Logout</IonLabel>
+                    </IonItem>
+                </IonList>
+            </IonContent>
+        </IonMenu>
+
       <IonHeader>
-        <IonToolbar color="primary" className="ion-text-center">
-          <IonTitle>My Profile</IonTitle>
+        <IonToolbar color="primary">
+          <IonTitle>Feed</IonTitle>
+          {/* desktop icons */}
+          <IonButtons slot="end" className="ion-hide-sm-down">
+            <IonButton routerLink="/feed">
+            <IonIcon icon={homeOutline} />
+            </IonButton>
+            <IonButton routerLink="/people">
+            <IonIcon icon={peopleOutline} />
+            </IonButton>
+            <IonButton routerLink="/login">
+            <IonIcon icon={logOutOutline} />
+            </IonButton>
+          </IonButtons>
+
+          {/* mobile menu button */}
+          <IonButtons slot="end" className="ion-hide-lg-up">
+            <IonMenuButton autoHide={false}>
+                <IonIcon icon={menuOutline} />
+            </IonMenuButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
