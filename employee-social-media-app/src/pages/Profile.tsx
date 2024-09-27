@@ -17,7 +17,7 @@ import {
   IonMenuButton,
   IonMenu,
   IonList,
-  IonLabel,
+  IonText,
 } from "@ionic/react";
 import { logOutOutline, menuOutline, peopleOutline, homeOutline } from "ionicons/icons";
 import { useState } from "react";
@@ -46,15 +46,15 @@ const Profile: React.FC = () => {
                 <IonList>
                     <IonItem routerLink="/feed">
                     <IonIcon icon={homeOutline} slot="start" />
-                    <IonLabel>Feed</IonLabel>
+                    <IonText>Feed</IonText>
                     </IonItem>
                     <IonItem routerLink="/people">
                     <IonIcon icon={peopleOutline} slot="start" />
-                    <IonLabel>People</IonLabel>
+                    <IonText>People</IonText>
                     </IonItem>
                     <IonItem routerLink="/login">
                     <IonIcon icon={logOutOutline} slot="start" />
-                    <IonLabel>Logout</IonLabel>
+                    <IonText>Logout</IonText>
                     </IonItem>
                 </IonList>
             </IonContent>
@@ -84,7 +84,7 @@ const Profile: React.FC = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
+      <IonContent className="ion-padding" id="main-content">
         <IonGrid>
           <IonRow>
             <IonCol sizeMd="2" sizeXs="1"></IonCol>

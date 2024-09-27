@@ -10,9 +10,9 @@ import {
   IonRow,
   IonCol,
   IonItem,
-  IonLabel,
   IonFooter,
   setupIonicReact,
+  IonText,
 } from "@ionic/react";
 import { useState } from "react";
 
@@ -38,10 +38,9 @@ const Login: React.FC = () => {
         <IonGrid fixed={true}>
           <IonRow className="ion-padding ion-justify-content-center">
             <IonCol sizeMd="4" sizeXs="12">
-              <IonItem>
-                <IonLabel position="stacked">Email:</IonLabel>
+              <IonItem style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                <IonText>Email:</IonText>
                 <IonInput
-                  label="Email:"
                   labelPlacement="stacked"
                   type="email"
                   onIonChange={(e) => setEmail(e.detail.value!)}
@@ -51,9 +50,9 @@ const Login: React.FC = () => {
           </IonRow>
           <IonRow  className="ion-padding ion-justify-content-center">
             <IonCol sizeMd="4" sizeXs="12">
-              <IonItem>
+              <IonItem style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                <IonText>Password:</IonText>
                 <IonInput
-                  label="Password:"
                   labelPlacement="stacked"
                   type="password"
                   onIonChange={(e) => setPassword(e.detail.value!)}

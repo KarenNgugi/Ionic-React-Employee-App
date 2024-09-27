@@ -19,7 +19,7 @@ import {
   IonMenu,
   IonList,
   IonItem,
-  IonLabel,
+  IonText,
   IonButtons,
   IonMenuButton,
 } from "@ionic/react";
@@ -104,15 +104,15 @@ const Feed: React.FC = () => {
                 <IonList>
                     <IonItem routerLink="/profile">
                     <IonIcon icon={personOutline} slot="start" />
-                    <IonLabel>Profile</IonLabel>
+                    <IonText>Profile</IonText>
                     </IonItem>
                     <IonItem routerLink="/people">
                     <IonIcon icon={peopleOutline} slot="start" />
-                    <IonLabel>People</IonLabel>
+                    <IonText>People</IonText>
                     </IonItem>
                     <IonItem routerLink="/login">
                     <IonIcon icon={logOutOutline} slot="start" />
-                    <IonLabel>Logout</IonLabel>
+                    <IonText>Logout</IonText>
                     </IonItem>
                 </IonList>
             </IonContent>
@@ -142,7 +142,7 @@ const Feed: React.FC = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
+      <IonContent className="ion-padding" id="main-content">
         {/* user input card */}
         <IonCard>
           <IonCardContent>

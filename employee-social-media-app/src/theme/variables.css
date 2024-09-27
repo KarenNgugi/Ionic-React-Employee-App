@@ -43,3 +43,9 @@ ion-footer {
 ion-popover {
     --offset-y: -25%;
 }
+
+ion-label {
+    color: var(--ion-text-color, #000);
+    font-size: larger;
+  }
+  
