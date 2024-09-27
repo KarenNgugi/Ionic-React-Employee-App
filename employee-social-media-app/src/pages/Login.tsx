@@ -36,28 +36,26 @@ const Login: React.FC = () => {
       </IonHeader>
       <IonContent className="ion-padding ion-justify-content-center ion-align-items-center">
         <IonGrid fixed={true}>
-          <IonRow className="ion-padding ion-justify-content-center">
+          <IonRow className="ion-padding ion-justify-content-center" style={{ paddingBottom: 0 }}>
             <IonCol sizeMd="4" sizeXs="12">
-              <IonItem style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                 <IonText>Email:</IonText>
+                <IonText>
                 <IonInput
-                  labelPlacement="stacked"
+                  placeholder="email@company.domain"
                   type="email"
                   onIonChange={(e) => setEmail(e.detail.value!)}
                 />
-              </IonItem>
+                </IonText>
             </IonCol>
           </IonRow>
-          <IonRow  className="ion-padding ion-justify-content-center">
+          <IonRow className="ion-padding ion-justify-content-center" style={{ paddingBottom: 0 }}>
             <IonCol sizeMd="4" sizeXs="12">
-              <IonItem style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                 <IonText>Password:</IonText>
                 <IonInput
-                  labelPlacement="stacked"
+                  placeholder="********"
                   type="password"
                   onIonChange={(e) => setPassword(e.detail.value!)}
                 />
-              </IonItem>
             </IonCol>
           </IonRow>
           <IonRow>
