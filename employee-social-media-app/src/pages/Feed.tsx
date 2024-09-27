@@ -133,7 +133,7 @@ const Feed: React.FC = () => {
               {uploadedImage && (
                 <IonRow>
                     <IonCol>
-                        <IonImg src={uploadedImage} alt="uploaded image preview" style={{ width: "100%", marginTop: "1rem" }}/>
+                        <IonImg src={uploadedImage} alt="uploaded image preview" style={{ width: "20rem", marginTop: "1rem" }}/>
                     </IonCol>
                 </IonRow>
               )}
