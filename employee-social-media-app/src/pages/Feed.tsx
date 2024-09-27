@@ -22,7 +22,12 @@ import {
   IonCardSubtitle,
 } from "@ionic/react";
 import React, { useState } from "react";
-import { cameraOutline, chatbubbleOutline, heartOutline, shareSocialOutline, imageOutline } from "ionicons/icons";
+import {
+  chatbubbleOutline,
+  heartOutline,
+  shareSocialOutline,
+  imageOutline,
+} from "ionicons/icons";
 
 const Feed: React.FC = () => {
   const [postContent, setPostContent] = useState("");
@@ -30,18 +35,18 @@ const Feed: React.FC = () => {
 
   const [posts, setPosts] = useState([
     {
-        id: 1,
-        profile_picture: "src/images/OnikaMaraj.png",
-        name: "Onika Maraj",
-        timestamp: "Just now",
-        content: "This is a test post",
+      id: 1,
+      profile_picture: "src/images/OnikaMaraj.png",
+      name: "Onika Maraj",
+      timestamp: "Just now",
+      content: "This is a test post",
     },
     {
-        id: 2,
-        profile_picture: "src/images/BeyonceKnowles.png",
-        name: "Beyonce Knowles",
-        timestamp: "1 hour ago",
-        content: "Hello everyone, welcome to our new app!",
+      id: 2,
+      profile_picture: "src/images/BeyonceKnowles.png",
+      name: "Beyonce Knowles",
+      timestamp: "1 hour ago",
+      content: "Hello everyone, welcome to our new app!",
     },
   ]);
 
@@ -111,7 +116,7 @@ const Feed: React.FC = () => {
                 <IonCol></IonCol>
                 <IonCol size="auto">
                   <IonButton fill="clear" onClick={handleUploadImage}>
-                    <IonIcon icon={cameraOutline} />
+                    <IonIcon icon={imageOutline} />
                   </IonButton>
                   <IonButton
                     disabled={!isPostButtonEnabled}
@@ -125,18 +130,19 @@ const Feed: React.FC = () => {
             </IonGrid>
           </IonCardContent>
         </IonCard>
-        
+
         {/* dynamic feed section */}
-        <IonList>
+        {/* <IonList>
             {posts.map((post) => (
                 <IonItem key={post.id}>
                     <IonCard>
-                        <IonCardHeader>
+                        <IonCardContent>
                             <IonGrid>
                                 <IonRow>
                                     <IonCol size="auto">
                                         <IonImg src={post.profile_picture}
-                                        alt="Poster profile picture" style={{ width: "40px", height: "40px", borderRadius: "40pc"}}/>
+                                        alt="Poster profile picture" style={{ width: "5rem", borderRadius: "50%",
+                                        }}/>
                                     </IonCol>
                                     <IonCol>
                                         <IonCardTitle>{post.name}</IonCardTitle>
@@ -144,7 +150,7 @@ const Feed: React.FC = () => {
                                     </IonCol>
                                 </IonRow>
                             </IonGrid>
-                        </IonCardHeader>
+                            </IonCardContent>
                         <IonCardContent>{post.content}</IonCardContent>
                         <IonCardContent>
                             <IonButton fill="clear">
@@ -160,7 +166,49 @@ const Feed: React.FC = () => {
                     </IonCard>
                 </IonItem>
             ))}
-        </IonList>
+        </IonList> */}
+        <IonGrid>
+          {posts.map((post) => (
+            <IonRow key={post.id}>
+              <IonCol size="12">
+                <IonCard>
+                  <IonCardContent>
+                    <IonGrid>
+                      <IonRow>
+                        <IonCol size="auto">
+                          <IonImg
+                            src={post.profile_picture}
+                            alt="Poster profile picture"
+                            style={{ width: "5rem", borderRadius: "50%" }}
+                          />
+                        </IonCol>
+                        <IonCol>
+                          <IonCardTitle>{post.name}</IonCardTitle>
+                          <IonCardSubtitle>{post.timestamp}</IonCardSubtitle>
+                        </IonCol>
+                      </IonRow>
+                    </IonGrid>
+                  </IonCardContent>
+                  <IonCardContent>{post.content}</IonCardContent>
+                  <IonCardContent>
+                    <IonButton fill="clear">
+                      <IonIcon icon={heartOutline} slot="start" />
+                      React
+                    </IonButton>
+                    <IonButton fill="clear">
+                      <IonIcon icon={chatbubbleOutline} slot="start" />
+                      Comment
+                    </IonButton>
+                    <IonButton fill="clear">
+                      <IonIcon icon={shareSocialOutline} slot="start" />
+                      Share
+                    </IonButton>
+                  </IonCardContent>
+                </IonCard>
+              </IonCol>
+            </IonRow>
+          ))}
+        </IonGrid>
       </IonContent>
       <IonFooter className="ion-text-center">&copy; Karen 2024</IonFooter>
     </IonApp>
